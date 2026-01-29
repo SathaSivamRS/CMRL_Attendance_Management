@@ -8,32 +8,48 @@ import logo from '../assets/cmrl.png';
 export default function LoginScreen() {
   const navigate = useNavigate();
   const { setPhoneNumber } = useAuth();
+
   const [phone, setPhone] = useState('');
+  const [error, setError] = useState('');
+
+  const validatePhone = (num: string) => /^[6-9]\d{9}$/.test(num);
 
   const handleSendOTP = () => {
-    if (phone.length === 10) {
-      setPhoneNumber(phone);
-      navigate('/otp');
+    if (!phone) {
+      setError('Phone number is required');
+      return;
     }
+
+    if (!validatePhone(phone)) {
+      setError('Enter a valid 10-digit mobile number');
+      return;
+    }
+
+    setError('');
+    setPhoneNumber(phone);
+    navigate('/otp');
+  };
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value.replace(/\D/g, '');
+    setPhone(value);
+    if (error) setError('');
   };
 
   return (
     <div className="login-page">
 
-      {/* 🔵 Header */}
       <div className="cmrl-header">
         <img src={logo} alt="CMRL Logo" className="header-logo" />
         <h1>CMRL Attendance Tracker</h1>
       </div>
 
-      {/* 🟤 Body */}
       <div className="login-body">
         <div className="glass-card">
 
-          {/* 🔷 Watermark Logo */}
           <img src={logo} alt="CMRL Watermark" className="watermark-logo" />
 
-          <h2 className="login-title">Intern Login</h2>
+          <h2 className="login-title">CMRL Attendance Tracker</h2>
 
           <div className="input-group">
             <label>Phone Number</label>
@@ -43,15 +59,16 @@ export default function LoginScreen() {
                 type="tel"
                 maxLength={10}
                 value={phone}
-                onChange={(e) => setPhone(e.target.value.replace(/\D/g, ''))}
+                onChange={handleChange}
                 placeholder="Enter 10-digit mobile number"
+                className={error ? 'input-error' : ''}
               />
             </div>
+            {error && <p className="error-text">{error}</p>}
           </div>
 
           <button
             onClick={handleSendOTP}
-            disabled={phone.length !== 10}
             className="cmrl-btn"
           >
             Send OTP

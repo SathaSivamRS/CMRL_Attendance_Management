@@ -1,4 +1,4 @@
-/* 🌍 Page */
+/* 🌍 PAGE BACKGROUND */
 .login-page {
   min-height: 100vh;
   background-color: #D1B48C;
@@ -7,7 +7,7 @@
   font-family: 'Playfair Display', serif;
 }
 
-/* 🔵 Header */
+/* 🔵 HEADER */
 .cmrl-header {
   background-color: #002147;
   height: 90px;
@@ -30,7 +30,7 @@
   letter-spacing: 1px;
 }
 
-/* 🟤 Body */
+/* 🟤 BODY CENTER */
 .login-body {
   flex: 1;
   display: flex;
@@ -39,7 +39,7 @@
   padding: 20px;
 }
 
-/* ✨ Glass Card */
+/* ✨ GLASS CARD */
 .glass-card {
   position: relative;
   width: 100%;
@@ -55,7 +55,7 @@
   overflow: hidden;
 }
 
-/* 🔷 Watermark Logo */
+/* 🔷 WATERMARK LOGO */
 .watermark-logo {
   position: absolute;
   width: 240px;
@@ -67,13 +67,13 @@
   pointer-events: none;
 }
 
-/* Bring content above watermark */
+/* Ensure content appears above watermark */
 .glass-card > *:not(.watermark-logo) {
   position: relative;
   z-index: 1;
 }
 
-/* 🧾 Title */
+/* 🧾 TITLE */
 .login-title {
   font-size: 30px;
   font-weight: 600;
@@ -81,7 +81,7 @@
   margin-bottom: 25px;
 }
 
-/* 📱 Input */
+/* 📱 INPUT GROUP */
 .input-group {
   text-align: left;
   margin-bottom: 22px;
@@ -106,6 +106,11 @@
   outline: none;
   font-size: 15px;
   background-color: transparent;
+  font-family: 'Playfair Display', serif;
+}
+
+.input-wrapper input::placeholder {
+  color: #555;
 }
 
 .input-wrapper input:focus {
@@ -120,7 +125,48 @@
   color: #002147;
 }
 
-/* 🔘 Button */
+/* ❌ ERROR STYLES */
+.input-error {
+  border: 1.5px solid red !important;
+}
+
+.error-text {
+  color: red;
+  font-size: 13px;
+  margin-top: 6px;
+}
+
+/* 🔘 BUTTON */
 .cmrl-btn {
   width: 100%;
-  background-color: #
+  padding: 13px;
+  border-radius: 10px;
+  font-weight: 600;
+  border: none;
+  transition: 0.3s ease;
+  background-color: #8c8c8c;
+  color: #D1B48C;
+  font-family: 'Playfair Display', serif;
+}
+
+.cmrl-btn:enabled {
+  background-color: #002147;
+  cursor: pointer;
+}
+
+.cmrl-btn:enabled:hover {
+  background-color: #001733;
+  transform: translateY(-2px);
+}
+
+.cmrl-btn:disabled {
+  cursor: not-allowed;
+}
+
+/* 📜 TERMS TEXT */
+.terms-text {
+  font-size: 13px;
+  color: #333;
+  margin-top: 18px;
+  opacity: 0.8;
+}
