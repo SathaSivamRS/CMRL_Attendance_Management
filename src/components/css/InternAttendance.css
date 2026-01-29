@@ -1,4 +1,4 @@
-.intern-page {
+.attendance-page {
   min-height: 100vh;
   background-color: #D1B48C;
   font-family: 'Playfair Display', serif;
@@ -26,22 +26,21 @@
   background: none;
   border: none;
   color: white;
-  cursor: pointer;
 }
 
 /* Body */
-.intern-body {
+.attendance-body {
   display: flex;
   justify-content: center;
   padding: 30px 15px;
 }
 
-/* Glass card */
+/* Glass Card */
 .glass-card {
   position: relative;
   width: 100%;
-  max-width: 500px;
-  padding: 35px;
+  max-width: 520px;
+  padding: 30px;
   border-radius: 18px;
   background: rgba(255,255,255,0.2);
   backdrop-filter: blur(14px);
@@ -64,67 +63,31 @@
   z-index: 1;
 }
 
-/* Form */
-.form-group {
-  margin-bottom: 18px;
-  display: flex;
-  flex-direction: column;
-}
-
-.form-group label {
-  font-size: 14px;
-  margin-bottom: 6px;
+/* Title */
+.attendance-title {
+  margin-bottom: 15px;
   color: #002147;
-}
-
-.form-group input {
-  padding: 12px;
-  border-radius: 8px;
-  border: 1.5px solid #002147;
-  background: transparent;
-}
-
-/* Button */
-.cmrl-btn {
-  width: 100%;
-  margin-top: 10px;
-  padding: 13px;
-  border-radius: 10px;
-  border: none;
-  background-color: #002147;
-  color: #D1B48C;
-  font-weight: 600;
   display: flex;
-  justify-content: center;
   align-items: center;
-  gap: 8px;
-  cursor: pointer;
+  gap: 6px;
 }
 
-/* 📱 Mobile */
+/* Rows */
+.history-list { display: flex; flex-direction: column; gap: 10px; }
+
+.history-row {
+  padding: 12px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  background: rgba(255,255,255,0.35);
+}
+
+.present { border-left: 4px solid #2ecc71; }
+.absent { border-left: 4px solid #e74c3c; }
+
+/* Mobile */
 @media (max-width: 600px) {
-  .glass-card { padding: 25px; }
+  .glass-card { padding: 22px; }
   .cmrl-header { flex-wrap: wrap; height: auto; padding: 15px; }
-}
-
-/* Remove global centering effect for form */
-.glass-card {
-  text-align: left;   /* 🔥 change from center to left */
-}
-
-/* Ensure labels stay left */
-.form-group label {
-  text-align: left;
-  width: 100%;
-}
-
-/* Inputs full width and aligned */
-.form-group input {
-  text-align: left;
-}
-
-.error-text {
-  color: #ff3b3b;
-  font-size: 12px;
-  margin-top: 4px;
 }

@@ -1,18 +1,32 @@
 import { useNavigate } from 'react-router-dom';
-import { LogIn, LogOut, XCircle, Calendar, TrendingUp, User, FileText, BarChart3, Menu } from 'lucide-react';
+import { LogIn, LogOut, XCircle, Calendar, TrendingUp, User, FileText, BarChart3 } from 'lucide-react';
 import { useAuth } from './AuthContext';
 
 export default function InternDashboard() {
   const navigate = useNavigate();
   const { user } = useAuth();
-  const today = new Date().toLocaleDateString('en-IN', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
-  
+  const today = new Date().toLocaleDateString('en-IN', {
+    weekday: 'long',
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric'
+  });
+
   const attendancePercentage = 87;
-  const status = attendancePercentage >= 80 ? 'Safe' : attendancePercentage >= 70 ? 'Warning' : 'Critical';
-  const statusColor = status === 'Safe' ? 'text-green-600 bg-green-100' : status === 'Warning' ? 'text-yellow-600 bg-yellow-100' : 'text-red-600 bg-red-100';
+  const status =
+    attendancePercentage >= 80 ? 'Safe' :
+    attendancePercentage >= 70 ? 'Warning' : 'Critical';
+
+  const statusColor =
+    status === 'Safe'
+      ? 'text-green-600 bg-green-100'
+      : status === 'Warning'
+      ? 'text-yellow-600 bg-yellow-100'
+      : 'text-red-600 bg-red-100';
 
   return (
     <div className="min-h-screen bg-gray-50">
+
       {/* Header */}
       <div className="bg-blue-600 py-6 px-6 rounded-b-3xl shadow-md">
         <div className="flex justify-between items-start mb-4">
@@ -28,7 +42,8 @@ export default function InternDashboard() {
       </div>
 
       <div className="px-6 py-6 space-y-4">
-        {/* Attendance Status Card */}
+
+        {/* Today's Attendance */}
         <div className="bg-white rounded-2xl shadow-md p-5">
           <div className="flex items-center justify-between mb-3">
             <h3 className="font-semibold text-gray-900">Today's Attendance</h3>
@@ -67,16 +82,24 @@ export default function InternDashboard() {
           </button>
         </div>
 
-        {/* Summary Card */}
-        <div className="bg-white rounded-2xl shadow-md p-5">
+        {/* 🔥 Clickable Attendance Summary */}
+        <div
+          onClick={() => navigate('/intern/history')}
+          className="bg-white rounded-2xl shadow-md p-5 cursor-pointer hover:shadow-lg transition-all"
+        >
           <div className="flex items-center justify-between mb-4">
-            <h3 className="font-semibold text-gray-900">Attendance Summary</h3>
-            <TrendingUp className="w-5 h-5 text-blue-600" />
+            <h3 className="font-semibold text-gray-900 flex items-center gap-2">
+              <TrendingUp className="w-5 h-5 text-blue-600" />
+              Attendance Summary
+            </h3>
+            <span className="text-xs text-blue-600 font-medium">View Details →</span>
           </div>
-          
+
           <div className="flex items-center justify-between mb-4">
             <div>
-              <div className="text-4xl font-bold text-blue-600">{attendancePercentage}%</div>
+              <div className="text-4xl font-bold text-blue-600">
+                {attendancePercentage}%
+              </div>
               <p className="text-sm text-gray-600 mt-1">Overall Attendance</p>
             </div>
             <div className={`px-4 py-2 rounded-full ${statusColor} font-medium`}>
@@ -85,8 +108,14 @@ export default function InternDashboard() {
           </div>
 
           <div className="h-3 bg-gray-200 rounded-full overflow-hidden">
-            <div 
-              className={`h-full ${status === 'Safe' ? 'bg-green-600' : status === 'Warning' ? 'bg-yellow-600' : 'bg-red-600'}`}
+            <div
+              className={`h-full ${
+                status === 'Safe'
+                  ? 'bg-green-600'
+                  : status === 'Warning'
+                  ? 'bg-yellow-600'
+                  : 'bg-red-600'
+              }`}
               style={{ width: `${attendancePercentage}%` }}
             ></div>
           </div>

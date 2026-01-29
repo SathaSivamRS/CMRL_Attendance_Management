@@ -1,0 +1,132 @@
+.internlist-page {
+  min-height: 100vh;
+  background-color: #D1B48C;
+  font-family: 'Playfair Display', serif;
+}
+
+.cmrl-header {
+  background-color: #002147;
+  height: 90px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 0 25px;
+  color: #D1B48C;
+}
+
+.header-logo { width: 45px; }
+
+.cmrl-header h1 {
+  font-family: 'Kaushan Script', cursive;
+  font-size: 22px;
+}
+
+.back-btn {
+  background: none;
+  border: none;
+  color: white;
+}
+
+.internlist-body {
+  padding: 25px;
+  position: relative;
+}
+
+.watermark-logo {
+  position: absolute;
+  width: 350px;
+  opacity: 0.05;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* Search */
+.search-bar {
+  display: flex;
+  align-items: center;
+  background: rgba(255,255,255,0.2);
+  padding: 12px;
+  border-radius: 12px;
+  margin-bottom: 15px;
+  backdrop-filter: blur(12px);
+}
+
+.search-bar input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  margin-left: 10px;
+}
+
+.search-icon { color: #002147; }
+
+/* Stats */
+.stats-card {
+  background: rgba(255,255,255,0.25);
+  padding: 12px 15px;
+  border-radius: 10px;
+  margin-bottom: 15px;
+}
+
+/* Cards */
+.intern-cards { display: flex; flex-direction: column; gap: 12px; }
+
+.intern-card {
+  background: rgba(255,255,255,0.25);
+  padding: 15px;
+  border-radius: 12px;
+  backdrop-filter: blur(10px);
+}
+
+.card-top {
+  display: flex;
+  justify-content: space-between;
+}
+
+.card-top h3 { margin: 0; }
+
+.card-bottom {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.percent { font-weight: bold; }
+
+.status {
+  padding: 3px 8px;
+  border-radius: 10px;
+  font-size: 12px;
+}
+
+.status.safe { background: #d4f5e2; color: #0a7a2f; }
+.status.warning { background: #fff3cd; color: #856404; }
+.status.critical { background: #f8d7da; color: #721c24; }
+
+.no-results {
+  text-align: center;
+  margin-top: 30px;
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .internlist-body { padding: 15px; }
+}
+
+.attendance-link {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: none;
+  border: none;
+  color: #002147;
+  font-size: 14px;
+  cursor: pointer;
+  padding: 0;
+  font-weight: 500;
+}
+
+.attendance-link:hover {
+  text-decoration: underline;
+}

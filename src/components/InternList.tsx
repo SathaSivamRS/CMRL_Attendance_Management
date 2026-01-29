@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ArrowLeft, Search, Edit, TrendingUp } from 'lucide-react';
+import './css/InternList.css';
+import logo from '../assets/cmrl.png';
 
 const mockInterns = [
   { id: 1, name: 'Rahul Singh', college: 'IIT Delhi', attendance: 92, status: 'Safe' },
@@ -23,67 +25,80 @@ export default function InternList() {
   );
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="internlist-page">
+
       {/* Header */}
-      <div className="bg-blue-600 py-4 px-6 flex items-center space-x-4">
-        <button onClick={() => navigate(-1)} className="text-white">
-          <ArrowLeft className="w-6 h-6" />
+      <div className="cmrl-header">
+        <button onClick={() => navigate(-1)} className="back-btn">
+          <ArrowLeft size={22} />
         </button>
-        <h1 className="text-xl font-semibold text-white">Intern List</h1>
+        <img src={logo} alt="CMRL Logo" className="header-logo" />
+        <h1>Intern List</h1>
       </div>
 
-      <div className="px-6 py-6 space-y-4">
-        {/* Search Bar */}
-        <div className="relative">
-          <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-            <Search className="h-5 w-5 text-gray-400" />
-          </div>
+      <div className="internlist-body">
+
+        {/* Watermark */}
+        <img src={logo} alt="Watermark" className="watermark-logo" />
+
+        {/* Search */}
+        <div className="search-bar">
+          <Search className="search-icon" size={18} />
           <input
             type="text"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="Search by name or college..."
-            className="w-full pl-12 pr-4 py-3 bg-white border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent shadow-md"
           />
         </div>
 
         {/* Stats */}
-        <div className="bg-white rounded-xl shadow-md p-4">
-          <p className="text-sm text-gray-600">
-            Showing <strong className="text-gray-900">{filteredInterns.length}</strong> of <strong className="text-gray-900">{mockInterns.length}</strong> interns
-          </p>
+        <div className="stats-card">
+          Showing <strong>{filteredInterns.length}</strong> of{' '}
+          <strong>{mockInterns.length}</strong> interns
         </div>
 
         {/* Intern Cards */}
-        <div className="space-y-3">
+        <div className="intern-cards">
           {filteredInterns.map((intern) => {
-            const statusColor = intern.status === 'Safe' ? 'bg-green-100 text-green-700' :
-                               intern.status === 'Warning' ? 'bg-yellow-100 text-yellow-700' :
-                               'bg-red-100 text-red-700';
+            const statusClass =
+              intern.status === 'Safe'
+                ? 'safe'
+                : intern.status === 'Warning'
+                ? 'warning'
+                : 'critical';
 
             return (
-              <div key={intern.id} className="bg-white rounded-xl shadow-md p-4">
-                <div className="flex items-center justify-between mb-3">
-                  <div className="flex-1">
-                    <h3 className="font-semibold text-gray-900">{intern.name}</h3>
-                    <p className="text-sm text-gray-600">{intern.college}</p>
+              <div key={intern.id} className="intern-card">
+                <div className="card-top">
+                  <div>
+                    <h3>{intern.name}</h3>
+                    <p>{intern.college}</p>
                   </div>
+
+                  {/* Edit */}
                   <button
                     onClick={() => navigate(`/admin/edit-intern/${intern.id}`)}
-                    className="p-2 text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
                   >
-                    <Edit className="w-5 h-5" />
+                    <Edit size={18} />
                   </button>
                 </div>
 
-                <div className="flex items-center justify-between pt-3 border-t border-gray-100">
-                  <div className="flex items-center space-x-2">
-                    <TrendingUp className="w-4 h-4 text-gray-400" />
-                    <span className="text-sm text-gray-600">Attendance</span>
-                  </div>
-                  <div className="flex items-center space-x-3">
-                    <span className="font-bold text-gray-900">{intern.attendance}%</span>
-                    <span className={`px-3 py-1 rounded-full text-xs font-medium ${statusColor}`}>
+                <div className="card-bottom">
+                  {/* 🔥 CLICKABLE ATTENDANCE */}
+                  <button
+                    className="attendance-link"
+                    onClick={() =>
+                      navigate(`/admin/intern-attendance/${intern.id}`)
+                    }
+                  >
+                    <TrendingUp size={14} />
+                    Attendance
+                  </button>
+
+                  <div className="right">
+                    <span className="percent">{intern.attendance}%</span>
+                    <span className={`status ${statusClass}`}>
                       {intern.status}
                     </span>
                   </div>
@@ -94,9 +109,9 @@ export default function InternList() {
         </div>
 
         {filteredInterns.length === 0 && (
-          <div className="bg-white rounded-xl shadow-md p-8 text-center">
-            <Search className="w-16 h-16 text-gray-300 mx-auto mb-4" />
-            <p className="text-gray-600">No interns found matching your search</p>
+          <div className="no-results">
+            <Search size={50} />
+            <p>No interns found</p>
           </div>
         )}
       </div>

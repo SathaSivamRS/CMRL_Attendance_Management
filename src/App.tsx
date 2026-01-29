@@ -18,6 +18,8 @@ import InternList from './components/InternList';
 import ReportsPage from './components/ReportsPage';
 import HolidayManagement from './components/HolidayManagement';
 import SettingsPage from './components/SettingsPage';
+import InternAttendance from './components/InternAttendance';
+
 
 function ProtectedRoute({ children }: { children: React.ReactNode }) {
   const { isAuthenticated } = useAuth();
@@ -49,6 +51,15 @@ function App() {
             <Route path="/admin/reports" element={<ProtectedRoute><ReportsPage /></ProtectedRoute>} />
             <Route path="/admin/holidays" element={<ProtectedRoute><HolidayManagement /></ProtectedRoute>} />
             <Route path="/admin/settings" element={<ProtectedRoute><SettingsPage /></ProtectedRoute>} />
+            <Route
+  path="/admin/intern-attendance/:id"
+  element={
+    <ProtectedRoute>
+      <InternAttendance />
+    </ProtectedRoute>
+  }
+/>
+
           </Routes>
         </div>
       </Router>
