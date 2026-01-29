@@ -1,12 +1,18 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ArrowLeft, Shield } from 'lucide-react';
+import { ArrowLeft } from 'lucide-react';
 import { useAuth } from './AuthContext';
+import './css/OTPScreen.css';
+import logo from '../assets/cmrl.png';
 
 export default function OTPScreen() {
   const navigate = useNavigate();
   const { phoneNumber, login } = useAuth();
+
   const [otp, setOtp] = useState(['', '', '', '', '', '']);
+  const [error, setError] = useState('');
+  const [timer, setTimer] = useState(0);
+  const [resendMsg, setResendMsg] = useState('');
 
   const handleOtpChange = (index: number, value: string) => {
     if (value.length <= 1 && /^\d*$/.test(value)) {
@@ -23,56 +29,68 @@ export default function OTPScreen() {
 
   const handleVerify = () => {
     const otpValue = otp.join('');
-    if (otpValue.length === 6) {
-      // Mock login - in real app, verify with backend
-      if (phoneNumber.startsWith('9')) {
-        login({
-          id: '1',
-          name: 'Rahul Kumar',
-          phone: phoneNumber,
-          role: 'admin'
-        });
-        navigate('/admin/dashboard');
-      } else {
-        login({
-          id: '2',
-          name: 'Priya Sharma',
-          phone: phoneNumber,
-          role: 'intern',
-          college: 'Delhi University',
-          internshipStart: '2025-01-01',
-          internshipEnd: '2025-06-30'
-        });
-        navigate('/intern/dashboard');
-      }
+
+    if (otpValue.length !== 6) {
+      setError('Enter the 6-digit OTP');
+      return;
+    }
+
+    setError('');
+
+    if (phoneNumber.startsWith('9')) {
+      login({ id: '1', name: 'Admin User', phone: phoneNumber, role: 'admin' });
+      navigate('/admin/dashboard');
+    } else {
+      login({
+        id: '2',
+        name: 'Intern User',
+        phone: phoneNumber,
+        role: 'intern',
+        college: 'Sample College',
+        internshipStart: '2025-01-01',
+        internshipEnd: '2025-06-30'
+      });
+      navigate('/intern/dashboard');
     }
   };
 
+  const handleResend = () => {
+    if (timer > 0) return;
+
+    setResendMsg('OTP resent successfully');
+    setTimer(30);
+
+    const interval = setInterval(() => {
+      setTimer((prev) => {
+        if (prev === 1) clearInterval(interval);
+        return prev - 1;
+      });
+    }, 1000);
+  };
+
   return (
-    <div className="min-h-screen bg-gray-50">
-      <div className="bg-blue-600 py-4 px-6">
-        <button onClick={() => navigate(-1)} className="text-white">
-          <ArrowLeft className="w-6 h-6" />
+    <div className="otp-page">
+
+      <div className="cmrl-header">
+        <button onClick={() => navigate(-1)} className="back-btn">
+          <ArrowLeft size={24} />
         </button>
+        <img src={logo} alt="CMRL Logo" className="header-logo" />
+        <h1>CMRL Attendance Tracker</h1>
       </div>
 
-      <div className="px-6 py-8">
-        <div className="bg-white rounded-2xl shadow-md p-6 max-w-md mx-auto">
-          <div className="flex justify-center mb-6">
-            <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center">
-              <Shield className="w-8 h-8 text-blue-600" />
-            </div>
-          </div>
+      <div className="otp-body">
+        <div className="glass-card">
 
-          <h2 className="text-xl font-semibold text-gray-900 text-center mb-2">
-            Verify OTP
-          </h2>
-          <p className="text-sm text-gray-600 text-center mb-8">
+          <img src={logo} alt="CMRL Watermark" className="watermark-logo" />
+
+          <h2 className="otp-title">Verify OTP</h2>
+          <p className="otp-subtitle">
             Enter the 6-digit code sent to<br />
-            <span className="font-medium text-gray-900">+91 {phoneNumber}</span>
+            <strong>+91 {phoneNumber}</strong>
           </p>
 
-          <div className="flex justify-center space-x-3 mb-6">
+          <div className="otp-inputs">
             {otp.map((digit, index) => (
               <input
                 key={index}
@@ -81,22 +99,27 @@ export default function OTPScreen() {
                 maxLength={1}
                 value={digit}
                 onChange={(e) => handleOtpChange(index, e.target.value)}
-                className="w-12 h-12 text-center text-xl font-semibold border-2 border-gray-300 rounded-lg focus:border-blue-600 focus:ring-2 focus:ring-blue-200 outline-none"
+                className="otp-box"
               />
             ))}
           </div>
 
-          <button
-            onClick={handleVerify}
-            disabled={otp.join('').length !== 6}
-            className="w-full bg-blue-600 text-white py-3 rounded-lg font-medium hover:bg-blue-700 disabled:bg-gray-300 disabled:cursor-not-allowed transition-colors"
-          >
+          {error && <p className="error-text">{error}</p>}
+
+          <button onClick={handleVerify} className="cmrl-btn">
             Verify OTP
           </button>
 
-          <button className="w-full text-blue-600 text-sm font-medium mt-4">
-            Resend OTP
+          <button
+            className="resend-btn"
+            onClick={handleResend}
+            disabled={timer > 0}
+          >
+            {timer > 0 ? `Resend OTP in ${timer}s` : 'Resend OTP'}
           </button>
+
+          {resendMsg && <p className="success-text">{resendMsg}</p>}
+
         </div>
       </div>
     </div>
