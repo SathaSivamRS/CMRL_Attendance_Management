@@ -67,7 +67,6 @@
   pointer-events: none;
 }
 
-/* Ensure content appears above watermark */
 .glass-card > *:not(.watermark-logo) {
   position: relative;
   z-index: 1;
@@ -106,7 +105,6 @@
   outline: none;
   font-size: 15px;
   background-color: transparent;
-  font-family: 'Playfair Display', serif;
 }
 
 .input-wrapper input::placeholder {
@@ -146,7 +144,6 @@
   transition: 0.3s ease;
   background-color: #8c8c8c;
   color: #D1B48C;
-  font-family: 'Playfair Display', serif;
 }
 
 .cmrl-btn:enabled {
@@ -169,4 +166,56 @@
   color: #333;
   margin-top: 18px;
   opacity: 0.8;
+}
+
+/* ============================= */
+/* 📱 RESPONSIVE BREAKPOINTS */
+/* ============================= */
+
+/* Tablet */
+@media (max-width: 900px) {
+  .login-body { padding: 15px; }
+  .glass-card { padding: 30px 25px; }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .cmrl-header {
+    height: auto;
+    padding: 15px;
+    flex-wrap: wrap;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .header-logo {
+    width: 42px;
+    height: 42px;
+  }
+
+  .cmrl-header h1 {
+    font-size: 20px;
+  }
+
+  .login-body {
+    padding: 12px;
+  }
+
+  .glass-card {
+    padding: 25px 18px;
+    border-radius: 16px;
+  }
+
+  .login-title {
+    font-size: 22px;
+  }
+
+  .input-wrapper input {
+    font-size: 14px;
+    padding: 11px 12px 11px 38px;
+  }
+
+  .cmrl-btn {
+    padding: 11px;
+  }
 }

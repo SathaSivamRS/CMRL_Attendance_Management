@@ -1,3 +1,4 @@
+/* 🌍 PAGE */
 .otp-page {
   min-height: 100vh;
   background-color: #D1B48C;
@@ -6,6 +7,7 @@
   flex-direction: column;
 }
 
+/* 🔵 HEADER */
 .cmrl-header {
   background-color: #002147;
   height: 90px;
@@ -16,9 +18,7 @@
   box-shadow: 0 4px 12px rgba(0,0,0,0.2);
 }
 
-.header-logo {
-  width: 50px;
-}
+.header-logo { width: 50px; }
 
 .cmrl-header h1 {
   color: #D1B48C;
@@ -33,6 +33,7 @@
   cursor: pointer;
 }
 
+/* 🟤 BODY */
 .otp-body {
   flex: 1;
   display: flex;
@@ -41,6 +42,7 @@
   padding: 20px;
 }
 
+/* ✨ GLASS CARD */
 .glass-card {
   position: relative;
   width: 100%;
@@ -55,6 +57,7 @@
   overflow: hidden;
 }
 
+/* 🔷 WATERMARK */
 .watermark-logo {
   position: absolute;
   width: 240px;
@@ -69,6 +72,7 @@
   z-index: 1;
 }
 
+/* TEXT */
 .otp-title {
   font-size: 26px;
   color: #002147;
@@ -80,6 +84,7 @@
   margin-bottom: 25px;
 }
 
+/* 🔢 OTP INPUTS */
 .otp-inputs {
   display: flex;
   justify-content: center;
@@ -96,18 +101,11 @@
   border: 2px solid #002147;
 }
 
-.error-text {
-  color: red;
-  font-size: 13px;
-  margin-bottom: 10px;
-}
+/* MESSAGES */
+.error-text { color: red; font-size: 13px; margin-bottom: 10px; }
+.success-text { color: green; font-size: 13px; margin-top: 6px; }
 
-.success-text {
-  color: green;
-  font-size: 13px;
-  margin-top: 6px;
-}
-
+/* BUTTONS */
 .cmrl-btn {
   width: 100%;
   padding: 12px;
@@ -131,4 +129,57 @@
 .resend-btn:disabled {
   opacity: 0.6;
   cursor: not-allowed;
+}
+
+/* ============================= */
+/* 📱 RESPONSIVE BREAKPOINTS */
+/* ============================= */
+
+/* Tablet */
+@media (max-width: 900px) {
+  .otp-body { padding: 15px; }
+  .glass-card { padding: 30px; }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .cmrl-header {
+    height: auto;
+    padding: 15px;
+    flex-wrap: wrap;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .header-logo { width: 40px; }
+  .cmrl-header h1 { font-size: 20px; }
+
+  .back-btn {
+    position: absolute;
+    left: 15px;
+    top: 18px;
+  }
+
+  .otp-body { padding: 12px; }
+
+  .glass-card {
+    padding: 25px 18px;
+    border-radius: 16px;
+  }
+
+  .otp-title { font-size: 22px; }
+  .otp-subtitle { font-size: 13px; }
+
+  /* OTP boxes shrink to fit mobile */
+  .otp-inputs {
+    gap: 8px;
+  }
+
+  .otp-box {
+    width: 40px;
+    height: 45px;
+    font-size: 18px;
+  }
+
+  .cmrl-btn { padding: 11px; }
 }

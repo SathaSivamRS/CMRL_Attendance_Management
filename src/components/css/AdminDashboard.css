@@ -1,0 +1,212 @@
+/* 🌍 PAGE */
+.admin-page {
+  min-height: 100vh;
+  background-color: #D1B48C;
+  font-family: 'Playfair Display', serif;
+}
+
+/* 🔵 HEADER */
+.cmrl-header {
+  background-color: #002147;
+  height: 90px;
+  display: flex;
+  align-items: center;
+  padding: 0 30px;
+  gap: 15px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+}
+
+.header-logo { width: 50px; }
+
+.header-info h1 {
+  color: #D1B48C;
+  font-family: 'Kaushan Script', cursive;
+  margin: 0;
+  font-size: 24px;
+}
+
+.header-info p {
+  color: white;
+  font-size: 13px;
+}
+
+.logout-btn {
+  margin-left: auto;
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+/* 🟤 BODY */
+.admin-body {
+  padding: 30px;
+  position: relative;
+}
+
+/* 🔷 WATERMARK */
+.watermark-logo {
+  position: absolute;
+  width: 320px;
+  opacity: 0.05;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+/* 📊 STATS GRID */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+.stat-card {
+  background: white;
+  border-radius: 15px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+}
+
+/* ⚡ QUICK ACTIONS */
+.qa-section {
+  margin-top: 25px;
+  background: #ffffff;
+  padding: 25px;
+  border-radius: 18px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+}
+
+.qa-section h3 {
+  font-size: 20px;
+  color: #002147;
+  margin-bottom: 18px;
+}
+
+.qa-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 18px;
+}
+
+.qa-card {
+  padding: 26px 20px;
+  border-radius: 16px;
+  border: 2px solid;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.25s ease;
+  min-height: 120px;
+}
+
+.qa-blue {
+  background-color: #eef5ff;
+  border-color: #bcd4ff;
+  color: #003a8c;
+}
+
+.qa-green {
+  background-color: #e9fbea;
+  border-color: #a5e8b2;
+  color: #0a7a2f;
+}
+
+.qa-icon {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.qa-icon.blue { background-color: #dbeafe; color: #2563eb; }
+.qa-icon.green { background-color: #dcfce7; color: #16a34a; }
+
+.qa-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 18px rgba(0,0,0,0.12);
+}
+
+/* 📁 MANAGEMENT SECTIONS */
+.section-list {
+  margin-top: 25px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px;
+}
+
+.section-list button {
+  padding: 18px;
+  border-radius: 14px;
+  border: none;
+  background: white;
+  font-weight: 600;
+  color: #002147;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+  transition: 0.25s ease;
+}
+
+/* 🔽 RESPONSIVE BREAKPOINTS */
+
+/* Tablet */
+@media (max-width: 900px) {
+  .admin-body { padding: 20px; }
+  .cmrl-header { padding: 0 20px; }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .cmrl-header {
+    height: auto;
+    padding: 15px;
+    flex-wrap: wrap;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .header-logo { width: 42px; }
+
+  .header-info h1 { font-size: 20px; }
+
+  .logout-btn {
+    position: absolute;
+    right: 15px;
+    top: 15px;
+  }
+
+  .admin-body { padding: 15px; }
+
+  .qa-section,
+  .stat-card,
+  .section-list button {
+    border-radius: 14px;
+  }
+
+  .qa-card {
+    min-height: 110px;
+    padding: 22px;
+  }
+}
+
+/* 📱 MOBILE FIX FOR QUICK ACTIONS */
+@media (max-width: 600px) {
+  .qa-grid {
+    grid-template-columns: 1fr;  /* 🔥 stack vertically */
+  }
+
+  .qa-card {
+    width: 100%;
+  }
+}
