@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Kaushan+Script&family=Playfair+Display:wght@400;500;600;700&display=swap');
+
 /* 🌍 PAGE BACKGROUND */
 .login-page {
   min-height: 100vh;
@@ -78,6 +80,8 @@
   font-weight: 600;
   color: #002147;
   margin-bottom: 25px;
+  text-align: center;
+  font-family: 'Kaushan Script', cursive;
 }
 
 /* 📱 INPUT GROUP */
@@ -95,6 +99,7 @@
 
 .input-wrapper {
   position: relative;
+  font-family: 'Playfair Display', serif;
 }
 
 .input-wrapper input {
@@ -105,6 +110,7 @@
   outline: none;
   font-size: 15px;
   background-color: transparent;
+  font-family: 'Playfair Display', serif;
 }
 
 .input-wrapper input::placeholder {
@@ -144,6 +150,7 @@
   transition: 0.3s ease;
   background-color: #8c8c8c;
   color: #D1B48C;
+  font-family: 'Playfair Display', serif;
 }
 
 .cmrl-btn:enabled {
@@ -166,6 +173,7 @@
   color: #333;
   margin-top: 18px;
   opacity: 0.8;
+  text-align: center;
 }
 
 /* ============================= */
@@ -208,6 +216,7 @@
 
   .login-title {
     font-size: 22px;
+    font-family: 'Kaushan Script', cursive;
   }
 
   .input-wrapper input {

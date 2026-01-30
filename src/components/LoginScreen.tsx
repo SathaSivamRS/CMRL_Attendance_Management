@@ -49,7 +49,7 @@ export default function LoginScreen() {
 
           <img src={logo} alt="CMRL Watermark" className="watermark-logo" />
 
-          <h2 className="login-title">CMRL Attendance Tracker</h2>
+          <h2 className="login-title">Welcome User</h2>
 
           <div className="input-group">
             <label>Phone Number</label>
