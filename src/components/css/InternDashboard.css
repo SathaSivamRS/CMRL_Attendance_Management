@@ -15,7 +15,7 @@ body {
 /* Watermark */
 .watermark-logo {
   position: absolute;
-  width: 450px;
+  width: 250px;
   opacity: 0.07;
   top: 55%;
   left: 50%;
@@ -42,16 +42,13 @@ body {
   gap: 14px;
 }
 
-.header-logo {
-  height: 40px;
-}
+.header-logo { height: 40px; }
 
 .header-title {
   font-family: 'Kaushan Script', cursive;
   font-size: 26px;
 }
 
-/* Right side header */
 .header-right {
   display: flex;
   align-items: center;
@@ -62,13 +59,10 @@ body {
   display: flex;
   flex-direction: column;
   text-align: right;
-  color: #D1B48C;
   font-size: 14px;
 }
 
-.welcome-text {
-  font-weight: 600;
-}
+.welcome-text { font-weight: 600; }
 
 .header-date {
   font-size: 13px;
@@ -84,10 +78,25 @@ body {
 
 /* Content */
 .dashboard-content {
-  padding: 30px 40px;
+  padding: 30px 60px;
   display: flex;
   flex-direction: column;
   gap: 25px;
+}
+
+/* 🔥 SIDE BY SIDE TOP CARDS */
+.top-cards-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 25px;
+  align-items: stretch; /* makes both cards same height */
+}
+
+.hero-card {
+  padding: 24px 26px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* balances content inside */
 }
 
 /* Glass Card */
@@ -97,7 +106,6 @@ body {
   border-radius: 18px;
   border: 1px solid rgba(255,255,255,0.35);
   box-shadow: 0 12px 40px rgba(0,0,0,0.25);
-  padding: 22px;
 }
 
 .card-header {
@@ -206,22 +214,19 @@ body {
   transition: 0.3s;
 }
 
-.link-card:hover {
-  transform: translateY(-3px);
-}
+.link-card:hover { transform: translateY(-3px); }
 
-.link-card p {
-  font-weight: 600;
-  color: #002147;
-}
-
-.link-card span {
-  font-size: 12px;
-  color: #333;
-}
+.link-card p { font-weight: 600; color: #002147; }
+.link-card span { font-size: 12px; color: #333; }
 
 /* Responsive */
+@media(max-width: 900px) {
+  .top-cards-row { grid-template-columns: 1fr; }
+}
+
 @media(max-width: 768px) {
   .dashboard-content { padding: 20px; }
   .header-user-info { display: none; }
 }
+
+
