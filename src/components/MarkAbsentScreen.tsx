@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ArrowLeft, CheckCircle } from 'lucide-react';
+import cmrlLogo from '../assets/cmrl.png';
+import './css/MarkAbsentScreen.css';
 
 export default function MarkAbsentScreen() {
   const navigate = useNavigate();
@@ -11,40 +13,35 @@ export default function MarkAbsentScreen() {
   const handleSubmit = () => {
     if (reason) {
       setSubmitted(true);
-      setTimeout(() => {
-        navigate('/intern/dashboard');
-      }, 2000);
+      setTimeout(() => navigate('/intern/dashboard'), 2000);
     }
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Header */}
-      <div className="bg-red-600 py-4 px-6 flex items-center space-x-4">
-        <button onClick={() => navigate(-1)} className="text-white">
-          <ArrowLeft className="w-6 h-6" />
-        </button>
-        <h1 className="text-xl font-semibold text-white">Mark Absent</h1>
-      </div>
+    <div className="absent-page">
+      <img src={cmrlLogo} alt="CMRL" className="watermark-logo" />
 
-      <div className="px-6 py-8">
+      <header className="absent-header">
+        <div className="header-left">
+          <button onClick={() => navigate(-1)} className="back-btn">
+            <ArrowLeft size={20} />
+          </button>
+          <img src={cmrlLogo} alt="CMRL Logo" className="header-logo" />
+          <h1>Mark Absent</h1>
+        </div>
+      </header>
+
+      <div className="absent-container">
         {!submitted ? (
-          <div className="bg-white rounded-2xl shadow-md p-6 space-y-6">
-            <div>
-              <h2 className="text-xl font-semibold text-gray-900 mb-4">Absence Information</h2>
-              <p className="text-sm text-gray-600">Please provide a reason for your absence</p>
+          <div className="glass-card">
+            <div className="section-header">
+              <h2>Absence Information</h2>
+              <p>Please provide a reason for your absence</p>
             </div>
 
-            {/* Reason Dropdown */}
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                Reason for Absence *
-              </label>
-              <select
-                value={reason}
-                onChange={(e) => setReason(e.target.value)}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent"
-              >
+            <div className="form-group">
+              <label>Reason for Absence *</label>
+              <select value={reason} onChange={(e) => setReason(e.target.value)}>
                 <option value="">Select a reason</option>
                 <option value="sick">Sick Leave</option>
                 <option value="leave">Personal Leave</option>
@@ -53,41 +50,31 @@ export default function MarkAbsentScreen() {
               </select>
             </div>
 
-            {/* Additional Notes */}
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                Additional Notes (Optional)
-              </label>
+            <div className="form-group">
+              <label>Additional Notes (Optional)</label>
               <textarea
+                rows={4}
                 value={notes}
                 onChange={(e) => setNotes(e.target.value)}
-                rows={4}
                 placeholder="Provide additional details if needed..."
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent resize-none"
               />
             </div>
 
-            {/* Submit Button */}
-            <button
-              onClick={handleSubmit}
-              disabled={!reason}
-              className="w-full bg-red-600 text-white py-4 rounded-xl font-semibold text-lg hover:bg-red-700 disabled:bg-gray-300 disabled:cursor-not-allowed transition-colors shadow-lg"
-            >
+            <button onClick={handleSubmit} disabled={!reason} className="primary-btn">
               Submit Absence
             </button>
 
-            <p className="text-xs text-gray-500 text-center">
+            <p className="info-text">
               Your absence will be recorded and sent for approval
             </p>
           </div>
         ) : (
-          <div className="bg-white rounded-2xl shadow-md p-8 text-center">
-            <div className="inline-flex items-center justify-center w-20 h-20 bg-green-100 rounded-full mb-4">
-              <CheckCircle className="w-12 h-12 text-green-600" />
+          <div className="glass-card success-card">
+            <div className="icon-circle success">
+              <CheckCircle size={42} />
             </div>
-            <h2 className="text-2xl font-semibold text-gray-900 mb-2">Absence Recorded!</h2>
-            <p className="text-gray-600">Your absence has been submitted for approval</p>
-            <p className="text-sm text-gray-500 mt-4">Redirecting to dashboard...</p>
+            <h2>Absence Recorded!</h2>
+            <p>Your absence has been submitted for approval</p>
           </div>
         )}
       </div>

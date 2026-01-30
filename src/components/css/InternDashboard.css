@@ -27,13 +27,13 @@ body {
 .dashboard-header {
   background: #002147;
   color: #D1B48C;
-  padding: 18px 40px;
+  padding: 4px 40px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   box-shadow: 0 6px 20px rgba(0,0,0,0.25);
-  border-bottom-left-radius: 20px;
-  border-bottom-right-radius: 20px;
+  /* border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px; */
 }
 
 .header-left {
@@ -228,5 +228,4 @@ body {
   .dashboard-content { padding: 20px; }
   .header-user-info { display: none; }
 }
-
 
