@@ -1,0 +1,227 @@
+@import url('https://fonts.googleapis.com/css2?family=Kaushan+Script&family=Playfair+Display:wght@400;500;600&display=swap');
+
+body {
+  margin: 0;
+  background: #D1B48C;
+  font-family: 'Playfair Display', serif;
+}
+
+.dashboard-container {
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Watermark */
+.watermark-logo {
+  position: absolute;
+  width: 450px;
+  opacity: 0.07;
+  top: 55%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+/* Header */
+.dashboard-header {
+  background: #002147;
+  color: #D1B48C;
+  padding: 18px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.header-logo {
+  height: 40px;
+}
+
+.header-title {
+  font-family: 'Kaushan Script', cursive;
+  font-size: 26px;
+}
+
+/* Right side header */
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.header-user-info {
+  display: flex;
+  flex-direction: column;
+  text-align: right;
+  color: #D1B48C;
+  font-size: 14px;
+}
+
+.welcome-text {
+  font-weight: 600;
+}
+
+.header-date {
+  font-size: 13px;
+  opacity: 0.85;
+}
+
+.profile-btn {
+  background: transparent;
+  border: none;
+  color: #D1B48C;
+  cursor: pointer;
+}
+
+/* Content */
+.dashboard-content {
+  padding: 30px 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+/* Glass Card */
+.glass-card {
+  background: rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(14px);
+  border-radius: 18px;
+  border: 1px solid rgba(255,255,255,0.35);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.25);
+  padding: 22px;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #002147;
+}
+
+/* Status */
+.status-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  background: orange;
+  border-radius: 50%;
+}
+
+/* Actions */
+.action-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 15px;
+}
+
+.action-btn {
+  background: #002147;
+  color: #D1B48C;
+  border: none;
+  border-radius: 14px;
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.action-btn:hover {
+  transform: translateY(-4px);
+  background: #00172e;
+}
+
+/* Summary */
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.percentage {
+  font-size: 40px;
+  color: #002147;
+  font-weight: bold;
+}
+
+.status-badge {
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-weight: 600;
+}
+
+.safe { background: #d4edda; color: #155724; }
+.warning { background: #fff3cd; color: #856404; }
+.critical { background: #f8d7da; color: #721c24; }
+
+/* Progress */
+.progress-bar {
+  height: 10px;
+  background: rgba(255,255,255,0.4);
+  border-radius: 20px;
+  margin-top: 10px;
+}
+
+.progress-fill {
+  height: 100%;
+  background: #002147;
+  border-radius: 20px;
+}
+
+/* Links */
+.links-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 15px;
+}
+
+.link-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(14px);
+  border-radius: 18px;
+  border: 1px solid rgba(255,255,255,0.35);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.25);
+  padding: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.link-card:hover {
+  transform: translateY(-3px);
+}
+
+.link-card p {
+  font-weight: 600;
+  color: #002147;
+}
+
+.link-card span {
+  font-size: 12px;
+  color: #333;
+}
+
+/* Responsive */
+@media(max-width: 768px) {
+  .dashboard-content { padding: 20px; }
+  .header-user-info { display: none; }
+}
